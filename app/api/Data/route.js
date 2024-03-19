@@ -1,4 +1,4 @@
-import Data from "../../(models)/info";
+import values from "../../(models)/Value";
 import { NextResponse } from "next/server";
 
 export async function POST(req) {
@@ -6,8 +6,8 @@ export async function POST(req) {
     const body = await req.json();
     const theData = body.formData;
 
-    await Data.create(theData);
-
+    await values.create(theData);
+    console.log(theData);
     return NextResponse.json({ message: "Data Created" }, { status: 201 });
   } catch (err) {
     return NextResponse.json({ message: "Error", error }, { status: 500 });
