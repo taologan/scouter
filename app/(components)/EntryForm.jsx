@@ -21,7 +21,8 @@ const EntryForm = () => {
   const [formData, setFormData] = useState(startingData);
 
   const handleChange = (e) => {
-    const value = e.target.value;
+    const value =
+      e.target.type === "checkbox" ? e.target.checked : e.target.value;
     const name = e.target.name;
     setFormData((preState) => ({
       ...preState,
@@ -34,7 +35,9 @@ const EntryForm = () => {
     const response = await fetch("/api/Data", {
       method: "POST",
       body: JSON.stringify({ formData }),
-      "Content-Type": "application/json",
+      headers: {
+        "Content-Type": "application/json",
+      },
     });
 
     if (!response.ok) {
@@ -53,7 +56,13 @@ const EntryForm = () => {
             <h1>General Info</h1>
             <label htmlFor="name">Name:</label>
             <br />
-            <input type="text" id="name" name="name" onChange={handleChange} />
+            <input
+              type="text"
+              id="name"
+              name="name"
+              onChange={handleChange}
+              value={formData.name}
+            />
 
             <br />
 
@@ -64,13 +73,19 @@ const EntryForm = () => {
               id="matchNumber"
               name="matchNumber"
               onChange={handleChange}
+              value={formData.matchNumber}
             />
 
             <br />
 
             <label htmlFor="position">Position:</label>
             <br />
-            <select id="position" name="position">
+            <select
+              id="position"
+              name="position"
+              onChange={handleChange}
+              value={formData.position}
+            >
               <option value="Blue 1">Blue 1</option>
               <option value="Blue 2">Blue 2</option>
               <option value="Blue 3">Blue 3</option>
@@ -88,6 +103,7 @@ const EntryForm = () => {
               id="noShow"
               name="noShow"
               onChange={handleChange}
+              value={formData.noShow}
             />
           </div>
 
@@ -100,51 +116,56 @@ const EntryForm = () => {
               id="mobility"
               name="mobility"
               onChange={handleChange}
+              value={formData.mobility}
             />
 
             <br />
 
-            <label htmlFor="ampScored">Amp Scored:</label>
+            <label htmlFor="ampScoredAuto">Amp Scored:</label>
             <br />
             <input
               type="text"
-              id="ampScored"
-              name="ampScored"
+              id="ampScoredAuto"
+              name="ampScoredAuto"
               onChange={handleChange}
+              value={formData.ampScoredAuto}
             />
 
             <br />
 
-            <label htmlFor="speakerScored">Speaker Scored:</label>
+            <label htmlFor="speakerScoredAuto">Speaker Scored:</label>
             <br />
             <input
               type="text"
-              id="speakerScored"
-              name="speakerScored"
+              id="speakerScoredAuto"
+              name="speakerScoredAuto"
               onChange={handleChange}
+              value={formData.speakerScoredAuto}
             />
           </div>
 
           <div>
             <h1>Teleop</h1>
-            <label htmlFor="ampScored">Amp Scored:</label>
+            <label htmlFor="ampScoredTeleop">Amp Scored:</label>
             <br />
             <input
               type="text"
-              id="ampScored"
-              name="ampScored"
+              id="ampScoredTeleop"
+              name="ampScoredTeleop"
               onChange={handleChange}
+              value={formData.ampScoredTeleop}
             />
 
             <br />
 
-            <label htmlFor="speakerScored">Speaker Scored:</label>
+            <label htmlFor="speakerScoredTeleop">Speaker Scored:</label>
             <br />
             <input
               type="text"
-              id="speakerScored"
-              name="speakerScored"
+              id="speakerScoredTeleop"
+              name="speakerScoredTeleop"
               onChange={handleChange}
+              value={formData.speakerScoredTeleop}
             />
 
             <br />
@@ -156,6 +177,7 @@ const EntryForm = () => {
               id="trap"
               name="trap"
               onChange={handleChange}
+              value={formData.trap}
             />
           </div>
 
@@ -163,7 +185,12 @@ const EntryForm = () => {
             <h1>End Position</h1>
             <label htmlFor="endPosition">End Position:</label>
             <br />
-            <select id="endPosition" name="endPosition" onChange={handleChange}>
+            <select
+              id="endPosition"
+              name="endPosition"
+              onChange={handleChange}
+              value={formData.endPosition}
+            >
               <option value="None">None</option>
               <option value="Park">Park</option>
               <option value="Hang">Hang</option>
@@ -178,6 +205,7 @@ const EntryForm = () => {
               id="harmony"
               name="harmony"
               onChange={handleChange}
+              value={formData.harmony}
             />
           </div>
 
@@ -190,6 +218,7 @@ const EntryForm = () => {
               id="additionalComments"
               name="additionalComments"
               onChange={handleChange}
+              value={formData.additionalComments}
             />
           </div>
 
