@@ -8,7 +8,9 @@ async function HomePage({ uniqueNames }) {
       <h1>Unique Names</h1>
       <ul>
         {names.uniqueNames.map((name, index) => (
-          <li key={index}>{name}</li>
+          <li key={index}>
+            <a href={`/teamPage/${name}`}>{name}</a>
+          </li>
         ))}
       </ul>
     </div>
@@ -23,7 +25,7 @@ export async function getNames() {
 
     // get unique names out of the data
     const uniqueNames = data ? [...new Set(data.map((item) => item.name))] : [];
-    console.log(uniqueNames);
+    // console.log(uniqueNames);
     return {
       // props: { uniqueNames },
       uniqueNames,
