@@ -4,8 +4,8 @@ import { NextResponse } from "next/server";
 export async function GET() {
   try {
     const value = await values.find();
-    console.log(value);
-    console.log("FJIOWEFJOIWEFJIWOEFJIOWEFJWEIOJIOWFJWEIOFJWEIOF");
+    // console.log(value);
+    // console.log("FJIOWEFJOIWEFJIWOEFJIOWEFJWEIOJIOWFJWEIOFJWEIOF");
     return NextResponse.json({ value }, { status: 200 });
   } catch (err) {
     console.log(err);
