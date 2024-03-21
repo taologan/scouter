@@ -9,11 +9,11 @@ const EntryForm = () => {
     position: "",
     noShow: false,
     mobility: false,
-    ampScoredAuto: "",
-    speakerScoredAuto: "",
-    cycles: "",
-    ampScoredTeleop: "",
-    speakerScoredTeleop: "",
+    ampScoredAuto: 0,
+    speakerScoredAuto: 0,
+    cycles: 0,
+    ampScoredTeleop: 0,
+    speakerScoredTeleop: 0,
     speakerDefense: false,
     sourceDefense: false,
     trap: false,
@@ -32,6 +32,23 @@ const EntryForm = () => {
     setFormData((preState) => ({
       ...preState,
       [name]: value,
+    }));
+  };
+  const handleIncrement = (e) => {
+    const value = parseInt(e.target.value);
+    const name = e.target.name;
+    setFormData((preState) => ({
+      ...preState,
+      [name]: value + 1
+    }));
+  };
+
+  const handleDecrement = (e) => {
+    const value = parseInt(e.target.value);
+    const name = e.target.name;
+    setFormData((preState) => ({
+      ...preState,
+      [name]: value - 1
     }));
   };
   const calculateTotalScore = () => {
@@ -143,61 +160,106 @@ const EntryForm = () => {
 
             <label htmlFor="ampScoredAuto">Amp Scored:</label>
             <br />
-            <input
+            {/* <input
               type="text"
               id="ampScoredAuto"
               name="ampScoredAuto"
               onChange={handleChange}
               value={formData.ampScoredAuto}
-            />
+            /> */}
+            <div>
+              <button type="button" name="ampScoredAuto" value={formData.ampScoredAuto} onClick={handleDecrement}>
+                -
+              </button>
+              <span>{formData.ampScoredAuto}</span>
+              <button type="button" name="ampScoredAuto" value={formData.ampScoredAuto} onClick={handleIncrement}>
+                +
+              </button>
+            </div>
 
             <br />
 
             <label htmlFor="speakerScoredAuto">Speaker Scored:</label>
             <br />
-            <input
+            {/* <input
               type="text"
               id="speakerScoredAuto"
               name="speakerScoredAuto"
               onChange={handleChange}
               value={formData.speakerScoredAuto}
-            />
+            /> */}
+            <div>
+              <button type="button" name="speakerScoredAuto" value={formData.speakerScoredAuto} onClick={handleDecrement}>
+                -
+              </button>
+              <span>{formData.speakerScoredAuto}</span>
+              <button type="button" name="speakerScoredAuto" value={formData.speakerScoredAuto} onClick={handleIncrement}>
+                +
+              </button>
+            </div>
           </div>
 
           <div>
             <h1>Teleop</h1>
             <label htmlFor="cycles">Cycles:</label>
             <br />
-            <input
+            {/* <input
               type="text"
               id="cycles"
               name="cycles"
               onChange={handleChange}
               value={formData.cycles}
-            />
+            /> */}
+            <div>
+              <button type="button" name="cycles" value={formData.cycles} onClick={handleDecrement}>
+                -
+              </button>
+              <span>{formData.cycles}</span>
+              <button type="button" name="cycles" value={formData.cycles} onClick={handleIncrement}>
+                +
+              </button>
+            </div>
             <br />
 
             <label htmlFor="ampScoredTeleop">Amp Scored:</label>
             <br />
-            <input
+            {/* <input
               type="text"
               id="ampScoredTeleop"
               name="ampScoredTeleop"
               onChange={handleChange}
               value={formData.ampScoredTeleop}
-            />
-
+            /> */}
+            <div>
+              <button type="button" name="ampScoredTeleop" value={formData.ampScoredTeleop} onClick={handleDecrement}>
+                -
+              </button>
+              <span>{formData.ampScoredTeleop}</span>
+              <button type="button" name="ampScoredTeleop" value={formData.ampScoredTeleop} onClick={handleIncrement}>
+                +
+              </button>
+            </div>
             <br />
 
             <label htmlFor="speakerScoredTeleop">Speaker Scored:</label>
             <br />
-            <input
+            {/* <input
               type="text"
               id="speakerScoredTeleop"
               name="speakerScoredTeleop"
               onChange={handleChange}
               value={formData.speakerScoredTeleop}
-            />
+            /> */}
+            <div>
+              <button type="button" name="speakerScoredTeleop" value={formData.speakerScoredTeleop} onClick={handleDecrement}>
+                -
+              </button>
+              <span>{formData.speakerScoredTeleop}</span>
+              <button type="button" name="speakerScoredTeleop" value={formData.speakerScoredTeleop} onClick={handleIncrement}>
+                +
+              </button>
+            </div>
+
             <br />
 
             <label htmlFor="speakerDefense">Speaker Defense:</label>
