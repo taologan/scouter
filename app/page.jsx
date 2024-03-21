@@ -2,9 +2,12 @@ import React from "react";
 import values from "./(models)/Value";
 // const fastcsv = require("fast-csv");
 // const fs = require("fs");
-
+export const dynamic = 'force-dynamic'
 const HomePage = async () => {
-  
+  HomePage.getInitialProps = async () => {
+    const names = await getNames();
+    return { names };
+  }
   const names = await getNames();
   // handleDownload();
   return (
@@ -64,10 +67,7 @@ const HomePage = async () => {
 //   });
 //   console.log("Done!");
 // }
-HomePage.getInitialProps = async () => {
-  const names = await getNames();
-  return { names };
-}
+
 
 const getNames = async() =>  {
   try {
