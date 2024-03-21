@@ -66,6 +66,7 @@ const handleDownload = async () => {
 
 const getNames = async() =>  {
   try {
+    
     const data = await values.find();
     // console.log(data);
     // console.log("FJIOWEFJOIWEFJIWOEFJIOWEFJWEIOJIOWFJWEIOFJWEIOF");
