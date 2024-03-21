@@ -1,10 +1,8 @@
 import EntryCard from "@/app/(components)/EntryCard";
 import values from "../../(models)/Value";
 const page = async ({ params }) => {
+  // console.log(params.id);
   const data = await getData(params);
-  console.log(params);
-  const filteredData = data.filter((item) => item.name === params.name);
-  console.log(filteredData + "sdhnfwwef");
   return (
     <div>
       {data &&
@@ -20,7 +18,9 @@ const page = async ({ params }) => {
 
 export async function getData(params) {
   try {
-    const data = await values.find();
+    // const data = await values.find();
+    const data = await values.find({ name: params.id});
+    // console.log(data);
     return data;
   } catch (err) {
     console.error(err);

@@ -11,11 +11,16 @@ const EntryForm = () => {
     mobility: false,
     ampScoredAuto: "",
     speakerScoredAuto: "",
+    cycles: "",
     ampScoredTeleop: "",
     speakerScoredTeleop: "",
+    speakerDefense: false,
+    sourceDefense: false,
     trap: false,
     endPosition: "",
-    harmony: false,
+    disabled: false,
+    foul: false,
+    totalScore: "",
     additionalComments: "",
   };
   const [formData, setFormData] = useState(startingData);
@@ -29,9 +34,24 @@ const EntryForm = () => {
       [name]: value,
     }));
   };
+  const calculateTotalScore = () => {
+    let totalScore = 0;
 
+    totalScore += (parseInt(formData.ampScoredAuto) || 0) * 2;
+    totalScore += formData.mobility ? 2 : 0;
+    totalScore += (parseInt(formData.ampScoredTeleop) || 0) * 1;
+    totalScore += (parseInt(formData.speakerScoredAuto) || 0) * 5;
+    totalScore += (parseInt(formData.speakerScoredTeleop) || 0) * 2;
+    totalScore += formData.park ? 1 : 0;
+    totalScore += formData.onstage ? 3 : 0;
+    totalScore += formData.harmony ? 2 : 0;
+    totalScore += formData.trap ? 5 : 0;
+    totalScore -= foul
+    return totalScore;
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
+    formData.totalScore = calculateTotalScore();
     const response = await fetch("/api/Data", {
       method: "POST",
       body: JSON.stringify({ formData }),
@@ -146,6 +166,17 @@ const EntryForm = () => {
 
           <div>
             <h1>Teleop</h1>
+            <label htmlFor="cycles">Cycles:</label>
+            <br />
+            <input
+              type="text"
+              id="cycles"
+              name="cycles"
+              onChange={handleChange}
+              value={formData.cycles}
+            />
+            <br />
+
             <label htmlFor="ampScoredTeleop">Amp Scored:</label>
             <br />
             <input
@@ -167,7 +198,29 @@ const EntryForm = () => {
               onChange={handleChange}
               value={formData.speakerScoredTeleop}
             />
+            <br />
 
+            <label htmlFor="speakerDefense">Speaker Defense:</label>
+            <br />
+            <input
+              type="checkbox"
+              id="speakerDefense"
+              name="speakerDefense"
+              onChange={handleChange}
+              value={formData.speakerDefense}
+            />
+
+            <br />
+
+            <label htmlFor="sourceDefense">Source Defense:</label>
+            <br />
+            <input
+              type="checkbox"
+              id="sourceDefense"
+              name="sourceDefense"
+              onChange={handleChange}
+              value={formData.sourceDefense}
+            />
             <br />
 
             <label htmlFor="trap">Trap:</label>
@@ -192,21 +245,37 @@ const EntryForm = () => {
               value={formData.endPosition}
             >
               <option value="None">None</option>
-              <option value="Park">Park</option>
-              <option value="Hang">Hang</option>
+              <option value="Park">Park(Underneath)</option>
+              <option value="Hang">Onstage(Hang)</option>
+              <option value="Harmony">Harmony(Two hang)</option>
             </select>
 
             <br />
 
-            <label htmlFor="harmony">Harmony:</label>
+            <label htmlFor="disabled">Disabled:</label>
             <br />
             <input
               type="checkbox"
-              id="harmony"
-              name="harmony"
+              id="disabled"
+              name="disabled"
               onChange={handleChange}
-              value={formData.harmony}
+              value={formData.disabled}
             />
+
+            <br />
+
+            <label htmlFor="foul">Foul:</label>
+            <br />
+            <input
+              type="checkbox"
+              id="foul"
+              name="foul"
+              onChange={handleChange}
+              value={formData.foul}
+            />
+
+            <br />
+
           </div>
 
           <div>
@@ -221,7 +290,7 @@ const EntryForm = () => {
               value={formData.additionalComments}
             />
           </div>
-
+          
           <input type="submit" className="btn" value="Submit Data" />
         </form>
       </div>
