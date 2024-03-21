@@ -1,5 +1,6 @@
 "use client";
 import { useRouter } from "next/navigation";
+import { revalidatePath } from 'next/cache'
 import React, { useState } from "react";
 const EntryForm = () => {
   const router = useRouter();
@@ -80,9 +81,9 @@ const EntryForm = () => {
     if (!response.ok) {
       throw new Error("Failed");
     }
-    router.refresh()
+    revalidatePath("/");
     router.push("/");
-    // router.refresh();
+    router.refresh();
   };
 
   return (

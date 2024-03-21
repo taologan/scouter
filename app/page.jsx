@@ -1,12 +1,11 @@
 import React from "react";
 import values from "./(models)/Value";
-import Link from "next/link";
 const fastcsv = require("fast-csv");
 const fs = require("fs");
 
 const HomePage = async () => {
-  // handleDownload();
   const names = await getNames();
+  // handleDownload();
   return (
     <div>
       <div>
