@@ -3,6 +3,9 @@
 @tailwind utilities;
 
 @layer components {
+  button {
+    @apply rounded-xl p-4 border;
+  }
   .btn {
     @apply hover:no-underline bg-blue-accent tracking-wider w-full text-center text-nav font-bold cursor-pointer uppercase px-4 py-2 rounded-md hover:bg-blue-accent-hover transition-colors block;
   }
