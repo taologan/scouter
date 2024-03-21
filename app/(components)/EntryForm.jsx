@@ -64,8 +64,8 @@ const EntryForm = () => {
       throw new Error("Failed");
     }
 
-    router.refresh();
     router.push("/");
+    router.refresh();
   };
 
   return (

@@ -1,14 +1,12 @@
 import EntryCard from "@/app/(components)/EntryCard";
 import values from "../../(models)/Value";
 const page = async ({ params }) => {
-  // console.log(params.id);
   const data = await getData(params);
   return (
     <div>
       {data &&
         data.map((item) => (
           <div key={item.id}>
-            {/* <p>{item.name}</p> */}
             <EntryCard match={item} />
           </div>
         ))}

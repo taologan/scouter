@@ -1,0 +1,6 @@
+_id,name,matchNumber,position,noShow,mobility,ampScoredAuto,speakerScoredAuto,ampScoredTeleop,speakerScoredTeleop,speakerDefense,sourceDefense,trap,endPosition,disabled,foul,totalScore,additionalComments,createdAt,updatedAt,__v
+65fc43d482267082871f48da,Test1,1,,false,false,12,1,1,1,false,false,false,Hang,false,1,,,Thu Mar 21 2024 10:27:32 GMT-0400 (Eastern Daylight Time),Thu Mar 21 2024 10:27:32 GMT-0400 (Eastern Daylight Time),0
+65fc453d82267082871f48de,Test2,12,,false,false,1,1,3,5,false,false,false,,false,0,,,Thu Mar 21 2024 10:33:33 GMT-0400 (Eastern Daylight Time),Thu Mar 21 2024 10:33:33 GMT-0400 (Eastern Daylight Time),0
+65fc4d8282267082871f4905,Test2,15,,false,false,1,2,1,1,false,false,false,,false,0,,,Thu Mar 21 2024 11:08:50 GMT-0400 (Eastern Daylight Time),Thu Mar 21 2024 11:08:50 GMT-0400 (Eastern Daylight Time),0
+65fc75b06507b3970426ca78,Test 3,,,false,false,,,,,false,false,false,,false,0,,,Thu Mar 21 2024 14:00:16 GMT-0400 (Eastern Daylight Time),Thu Mar 21 2024 14:00:16 GMT-0400 (Eastern Daylight Time),0
+65fc75d46507b3970426ca7e,Test4,,,false,false,,,,,false,false,false,,false,0,,,Thu Mar 21 2024 14:00:52 GMT-0400 (Eastern Daylight Time),Thu Mar 21 2024 14:00:52 GMT-0400 (Eastern Daylight Time),0

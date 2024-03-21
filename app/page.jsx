@@ -1,15 +1,25 @@
 import React from "react";
 import values from "./(models)/Value";
+const fastcsv = require("fast-csv");
+const fs = require("fs");
 
-async function HomePage({ uniqueNames }) {
+const HomePage = async () => {
+  const data = await handleDownload();
   const names = await getNames();
   return (
     <div>
-      <h1>Unique Names</h1>
+      <div>
+        <h1>Download CSV</h1>
+          <a href ="app/out.csv" download="app/out.csv" target = "_blank"><button>Test</button></a>
+        <br />
+      </div>
+      <h1>Teams</h1>
       <ul>
         {names.uniqueNames.map((name, index) => (
           <li key={index}>
-            <a href={`/teamPage/${name}`}>{name}</a>
+            <div className="flex flex-col hover:bg-card-hover bg-card rounded-md shadow-lg p-3 m-2">
+              <a href={`/teamPage/${name}`}>{name}</a>
+            </div>
           </li>
         ))}
       </ul>
@@ -17,7 +27,43 @@ async function HomePage({ uniqueNames }) {
   );
 }
 
-export async function getNames() {
+const handleDownload = async () => {
+  const data = await values.find();
+  console.log(data);
+  const csvStream = fastcsv.format({ headers: true });
+  const writableStream = fs.createWriteStream('app/out.csv');
+  
+  csvStream.pipe(writableStream);
+   
+  data.forEach(entry => {
+    csvStream.write({
+      _id: entry._id.toString(),
+      name: entry.name,
+      matchNumber: entry.matchNumber,
+      position: entry.position,
+      noShow: entry.noShow,
+      mobility: entry.mobility,
+      ampScoredAuto: entry.ampScoredAuto,
+      speakerScoredAuto: entry.speakerScoredAuto,
+      ampScoredTeleop: entry.ampScoredTeleop,
+      speakerScoredTeleop: entry.speakerScoredTeleop,
+      speakerDefense: entry.speakerDefense,
+      sourceDefense: entry.sourceDefense,
+      trap: entry.trap,
+      endPosition: entry.endPosition,
+      disabled: entry.disabled,
+      foul: entry.foul,
+      totalScore: entry.totalScore,
+      additionalComments: entry.additionalComments,
+      createdAt: entry.createdAt,
+      updatedAt: entry.updatedAt,
+      __v: entry.__v
+    });
+  });
+  console.log("Done!");
+}
+
+const getNames = async() =>  {
   try {
     const data = await values.find();
     // console.log(data);

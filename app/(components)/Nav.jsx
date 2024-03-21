@@ -5,15 +5,12 @@ const Nav = () => {
     <nav className="flex justify-between bg-nav p-4">
       <div className="flex items-center space-x-4">
         <Link href="/">
-          <p>go back</p>
+          <p>Home</p>
         </Link>
         <Link href="/dataEntry/new">
-          <p>New Data entry</p>
+          <p>New Data Entry</p>
         </Link>
       </div>
-      {/* <div>
-        <p className="text-default-text">placeholder</p>
-      </div> */}
     </nav>
   );
 };
