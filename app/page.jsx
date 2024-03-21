@@ -1,7 +1,7 @@
 import React from "react";
 import values from "./(models)/Value";
-const fastcsv = require("fast-csv");
-const fs = require("fs");
+// const fastcsv = require("fast-csv");
+// const fs = require("fs");
 
 const HomePage = async () => {
   const names = await getNames();
@@ -28,62 +28,9 @@ const HomePage = async () => {
   );
 }
 
-const handleDownload = async () => {
-  const data = await values.find();
-  console.log(data);
-  const csvStream = fastcsv.format({ headers: true });
-  const writableStream = fs.createWriteStream('app/documents/out.csv');
-  
-  csvStream.pipe(writableStream);
-   
-  data.forEach(entry => {
-    csvStream.write({
-      _id: entry._id.toString(),
-      name: entry.name,
-      matchNumber: entry.matchNumber,
-      position: entry.position,
-      noShow: entry.noShow,
-      mobility: entry.mobility,
-      ampScoredAuto: entry.ampScoredAuto,
-      speakerScoredAuto: entry.speakerScoredAuto,
-      ampScoredTeleop: entry.ampScoredTeleop,
-      speakerScoredTeleop: entry.speakerScoredTeleop,
-      speakerDefense: entry.speakerDefense,
-      sourceDefense: entry.sourceDefense,
-      trap: entry.trap,
-      endPosition: entry.endPosition,
-      disabled: entry.disabled,
-      foul: entry.foul,
-      totalScore: entry.totalScore,
-      additionalComments: entry.additionalComments,
-      createdAt: entry.createdAt,
-      updatedAt: entry.updatedAt,
-      __v: entry.__v
-    });
-  });
-  console.log("Done!");
-}
-
-const getNames = async() =>  {
-  try {
-    
-    const data = await values.find();
-    // console.log(data);
-    // console.log("FJIOWEFJOIWEFJIWOEFJIOWEFJWEIOJIOWFJWEIOFJWEIOF");
-
-    // get unique names out of the data
-    const uniqueNames = data ? [...new Set(data.map((item) => item.name))] : [];
-    // console.log(uniqueNames);
-    return {
-      // props: { uniqueNames },
-      uniqueNames,
-    };
-  } catch (err) {
-    console.error(err);
-    return {
-      props: { error: "Error fetching data" },
-    };
-  }
+HomePage.getInitialProps = async () => {
+  const names = await getNames();
+  return { names };
 }
 
 export default HomePage;
