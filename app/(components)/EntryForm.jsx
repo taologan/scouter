@@ -2,6 +2,7 @@
 import { useRouter } from "next/navigation";
 import { revalidatePath } from 'next/cache'
 import React, { useState } from "react";
+import refresh from "../refresh";
 const EntryForm = () => {
   const router = useRouter();
   const startingData = {
@@ -81,8 +82,9 @@ const EntryForm = () => {
     if (!response.ok) {
       throw new Error("Failed");
     }
-    revalidatePath("/");
     router.push("/");
+    // revalidatePath('/');
+    refresh();
     router.refresh();
   };
 

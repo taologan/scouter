@@ -1,6 +1,7 @@
 import values from "../../(models)/Value";
 import { NextResponse } from "next/server";
 
+
 export async function GET() {
   try {
     const value = await values.find();
