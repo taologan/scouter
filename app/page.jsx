@@ -1,16 +1,18 @@
 import React from "react";
 import values from "./(models)/Value";
+import DownloadCSV from "./(components)/DownloadCSV";
 const fastcsv = require("fast-csv");
 const fs = require("fs");
 
 const HomePage = async () => {
-  const data = await handleDownload();
+  // handleDownload();
   const names = await getNames();
   return (
     <div>
       <div>
-        <h1>Download CSV</h1>
-          <a href ="app/out.csv" download="app/out.csv" target = "_blank"><button>Test</button></a>
+        {/* <h1>Download CSV</h1> */}
+        {/* <DownloadCSV /> */}
+        {/* <button onClick={handleDownload}>Download</button> */}
         <br />
       </div>
       <h1>Teams</h1>
@@ -31,7 +33,7 @@ const handleDownload = async () => {
   const data = await values.find();
   console.log(data);
   const csvStream = fastcsv.format({ headers: true });
-  const writableStream = fs.createWriteStream('app/out.csv');
+  const writableStream = fs.createWriteStream('app/documents/out.csv');
   
   csvStream.pipe(writableStream);
    

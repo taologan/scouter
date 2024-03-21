@@ -14,7 +14,7 @@ const page = async ({ params }) => {
   );
 };
 
-export async function getData(params) {
+async function getData(params) {
   try {
     // const data = await values.find();
     const data = await values.find({ name: params.id});
