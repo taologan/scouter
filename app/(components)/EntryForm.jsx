@@ -19,8 +19,8 @@ const EntryForm = () => {
     trap: false,
     endPosition: "",
     disabled: false,
-    foul: false,
-    totalScore: "",
+    foul: 0,
+    totalScore: 0,
     additionalComments: "",
   };
   const [formData, setFormData] = useState(startingData);
@@ -52,23 +52,30 @@ const EntryForm = () => {
     }));
   };
   const calculateTotalScore = () => {
-    let totalScore = 0;
-
-    totalScore += (parseInt(formData.ampScoredAuto) || 0) * 2;
-    totalScore += formData.mobility ? 2 : 0;
-    totalScore += (parseInt(formData.ampScoredTeleop) || 0) * 1;
-    totalScore += (parseInt(formData.speakerScoredAuto) || 0) * 5;
-    totalScore += (parseInt(formData.speakerScoredTeleop) || 0) * 2;
-    totalScore += formData.park ? 1 : 0;
-    totalScore += formData.onstage ? 3 : 0;
-    totalScore += formData.harmony ? 2 : 0;
-    totalScore += formData.trap ? 5 : 0;
-    totalScore -= foul
-    return totalScore;
+    formData.totalScore += (parseInt(formData.ampScoredAuto) || 0) * 2;
+    formData.totalScore += formData.mobility ? 2 : 0;
+    formData.totalScore += (parseInt(formData.ampScoredTeleop) || 0) * 1;
+    formData.totalScore += (parseInt(formData.speakerScoredAuto) || 0) * 5;
+    formData.totalScore += (parseInt(formData.speakerScoredTeleop) || 0) * 2;
+    formData.totalScore += formData.park ? 1 : 0;
+    formData.totalScore += formData.onstage ? 3 : 0;
+    formData.totalScore += formData.harmony ? 2 : 0;
+    formData.totalScore += formData.trap ? 5 : 0;
+    formData.totalScore -= foul
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    formData.totalScore = calculateTotalScore();
+    // calculateTotalScore();
+    formData.totalScore += (parseInt(formData.ampScoredAuto) || 0) * 2;
+    formData.totalScore += formData.mobility ? 2 : 0;
+    formData.totalScore += (parseInt(formData.ampScoredTeleop) || 0) * 1;
+    formData.totalScore += (parseInt(formData.speakerScoredAuto) || 0) * 5;
+    formData.totalScore += (parseInt(formData.speakerScoredTeleop) || 0) * 2;
+    formData.totalScore += formData.park ? 1 : 0;
+    formData.totalScore += formData.onstage ? 3 : 0;
+    formData.totalScore += formData.harmony ? 2 : 0;
+    formData.totalScore += formData.trap ? 5 : 0;
+    formData.totalScore -= (parseInt(formData.foul));
     const response = await fetch("/api/Data", {
       method: "POST",
       body: JSON.stringify({ formData }),
@@ -297,7 +304,6 @@ const EntryForm = () => {
           </div>
 
           <div>
-            <h1>End Position</h1>
             <label htmlFor="endPosition">End Position:</label>
             <br />
             <select
@@ -329,7 +335,7 @@ const EntryForm = () => {
             <label htmlFor="foul">Foul:</label>
             <br />
             <input
-              type="checkbox"
+              type="text"
               id="foul"
               name="foul"
               onChange={handleChange}

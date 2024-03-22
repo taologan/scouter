@@ -11,6 +11,7 @@ const dataSchema = new Schema(
     mobility: Boolean,
     ampScoredAuto: Number,
     speakerScoredAuto: Number,
+    cycles: Number,
     ampScoredTeleop: Number,
     speakerScoredTeleop: Number,
     speakerDefense: Boolean,
