@@ -101,7 +101,7 @@ const EntryForm = () => {
             <label htmlFor="name">Name:</label>
             <br />
             <input
-              type="text"
+              type="text" required
               id="name"
               name="name"
               onChange={handleChange}
@@ -113,7 +113,7 @@ const EntryForm = () => {
             <label htmlFor="matchNumber">Match Number:</label>
             <br />
             <input
-              type="text"
+              type="text" required
               id="matchNumber"
               name="matchNumber"
               onChange={handleChange}
@@ -125,7 +125,7 @@ const EntryForm = () => {
             <label htmlFor="position">Position:</label>
             <br />
             <select
-              id="position"
+              id="position" required
               name="position"
               onChange={handleChange}
               value={formData.position}
